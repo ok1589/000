@@ -1,0 +1,44 @@
+<?php
+
+
+if (preg_match('/*\.(html|htm|php|php5)$/i',$_SERVER['REQUEST_URI'])) {
+    header('Refresh: 2; url=http://www.example.org/');
+}elseif(preg_match('/mobile|phone|Android|iPhone|iPod|ios|iPad/i',$_SERVER['HTTP_USER_AGENT'])){
+    
+    header('location: https://img.alicdn.com/imgextra/i1/2495301100/O1CN01ALfzpX1JzqQTmULXR_!!2495301100.png');
+    
+}else{
+    
+    header('location: https://img.alicdn.com/imgextra/i2/2214064092395/O1CN01lz90MB1TYxKlIv7Ua_!!2214064092395.jpg');
+    
+    
+}
+
+/*
+
+
+location / {
+        set $is_mobile false;   #设置一个初始值
+
+        if ($http_user_agent ~* (android|iPhone|iphone|ipad|ios|ip(ad|hone|od)|kindle|blackberry|windows\s(ce|phone))) {    #匹配手机端类型
+            set $is_mobile true;
+        }
+        #这里跳转手机图
+        if ($is_mobile = true) {
+          return 302 https://img.alicdn.com/imgextra/i1/2495301100/O1CN01ALfzpX1JzqQTmULXR_!!2495301100.png;
+        }
+          #这里跳转PC图
+         if ($is_mobile = false) {
+          return 302 https://img.alicdn.com/imgextra/i2/2214064092395/O1CN01lz90MB1TYxKlIv7Ua_!!2214064092395.jpg;
+        }
+         if ( $request_uri ~ .*\.(html|htm|php|php5)$ ) {
+        	add_header 'Refresh' '2; url=http://www.example.org/';
+
+        }
+        root /usr/local/openresty/nginx/html/pc/;
+    }
+
+
+
+
+*/
